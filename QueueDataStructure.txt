@@ -1,0 +1,86 @@
+public class QueueDataStructure {
+
+    static int top = 0;
+    static int[] data = new int[4];
+    int length = data.length;
+
+    public static void main(String[] args) {
+        System.out.printf("Queue Data Structure = Insertion and Deletion happen on different ends. First in; First out");
+
+        QueueDataStructure stack = new QueueDataStructure();
+        stack.push(4);
+        stack.push(17);
+        stack.push(7);
+
+        stack.printing();
+        stack.pop();
+        stack.printing();
+        stack.pop();
+        stack.pop();
+        stack.printing();
+        stack.pop();
+
+        stack.push(22);
+        stack.push(55);
+        stack.push(2);
+        stack.printing();
+        stack.push(5);
+        stack.push(6);
+        stack.printing();
+        stack.push(9);
+        stack.printing();
+        stack.pop();
+        stack.printing();
+        stack.pop();
+        stack.printing();
+        stack.pop();
+        stack.printing();
+        stack.pop();
+        stack.printing();
+
+
+    }
+
+    public void push(int value) {
+        if (top < data.length) {
+            data[top] = value;
+            System.out.println("Added [" + data[top] + "]");
+            top = top + 1;
+        } else if (top == data.length) {
+            System.out.println("error... Stack is already full. Not posible add [" + value + "] because all "
+                    + data.length + " element already is full.");
+        }
+    }
+
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack is already empty. There are no items to pull out");
+            return -1;
+        } else {
+            System.out.println("The stack was pulled from the Left side [" + data[0] + "]");
+
+            top = top - 1;
+            int datum = 0;
+
+            for (int i = 0; i < data.length - 1; i++) {
+                data[i] = data[i + 1];
+            }
+            data[length - 1] = 0;
+            return datum;
+        }
+    }
+
+    public void printing() {
+        for (int i = 0; i < data.length; i++) {
+            System.out.print(data[i] + "| ");
+        }
+        System.out.println();
+    }
+
+    public boolean isEmpty() {
+        if (data[0] == 0) {
+            return true;
+        }
+        return false;
+    }
+}
